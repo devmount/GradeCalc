@@ -197,11 +197,12 @@ class GradeCalc extends Plugin
                 'mode' => getRequestValue('mode'),
             );
             $grades = array(
-                '1' => getRequestValue('grade1'),
-                '2' => getRequestValue('grade2'),
-                '3' => getRequestValue('grade3'),
-                '4' => getRequestValue('grade4'),
-                '5' => getRequestValue('grade5'),
+                1 => getRequestValue('grade1'),
+                2 => getRequestValue('grade2'),
+                3 => getRequestValue('grade3'),
+                4 => getRequestValue('grade4'),
+                5 => getRequestValue('grade5'),
+                6 => 0,
             );
             // multiply
             $content .= '<br />';
@@ -222,26 +223,26 @@ class GradeCalc extends Plugin
 
             // calculate grade
             $fullPercent = round($percent);
-            if ($fullPercent < $grades['5']) {
+            if ($fullPercent < $grades[5]) {
                 $grade = "6";
             } else
-            if ($fullPercent >= $grades['5'] and $fullPercent < $grades['4']) {
+            if ($fullPercent >= $grades[5] and $fullPercent < $grades[4]) {
                 $grade = "5";
             } else
-            if ($fullPercent >= $grades['4'] and $fullPercent < $grades['3']) {
+            if ($fullPercent >= $grades[4] and $fullPercent < $grades[3]) {
                 $grade = "4";
             } else
-            if ($fullPercent >= $grades['3'] and $fullPercent < $grades['2']) {
+            if ($fullPercent >= $grades[3] and $fullPercent < $grades[2]) {
                 $grade = "3";
             } else
-            if ($fullPercent >= $grades['2'] and $fullPercent < $grades['1']) {
+            if ($fullPercent >= $grades[2] and $fullPercent < $grades[1]) {
                 $grade = "2";
             } else
-            if ($fullPercent >= $grades['1']) {
+            if ($fullPercent >= $grades[1]) {
                 $grade = "1";
             }
 
-            // calculate style
+            // calculate style class for grade color
             $gradeClass = 'medium';
             if ($grade > 5) {
                 $gradeClass = 'bad';
@@ -259,6 +260,29 @@ class GradeCalc extends Plugin
             // output: grade
             $content .= 'Note:<br />';
             $content .= '<div class="result-grade ' . $gradeClass . '">' . $grade . '</div>';
+
+            // output: scale
+            $content .= 'Maßstab:<br />';
+            $content .= '<table class="scale"><tr>';
+            for ($i=1; $i <= 6; $i++) {
+                $content .= '<th class="' . ($i == $grade ? $gradeClass : '') . '">' . $i . '</th>';
+            }
+            $content .= '</tr><tr>';
+            for ($i=1; $i <= 6; $i++) {
+                // calculate limits
+                if ($i <= 1) {
+                    $upper = $points['total'];
+                } else {
+                    $upper = round($points['total']*$grades[$i-1]/100)-1;
+                }
+                if ($i >= 6) {
+                    $lower = 0;
+                } else {
+                    $lower = round($points['total']*$grades[$i]/100);
+                }
+                $content .= '<td class="' . ($i == $grade ? $gradeClass : '') . '">' . $upper . ' - ' . $lower . '</td>';
+            }
+            $content .= '</tr></table>';
 
             $content .= '</div></div>';
             $content .= '<br />Alle Angaben und Ergebnisse ohne Gewähr.';
