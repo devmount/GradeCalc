@@ -2,23 +2,23 @@
     PluginDraft CSS styles
 */
 
-.gradegen {
+.gradecalc {
 }
 
-.gradegen input[type='number'],
-.gradegen input[type='submit'] {
+.gradecalc input[type='number'],
+.gradecalc input[type='submit'] {
     display: inline-block;
     width: 50px;
 }
-.gradegen select {
+.gradecalc select {
     height: 22px;
 }
-.gradegen input[type='submit'] {
+.gradecalc input[type='submit'] {
     padding: 2px 0;
     width: 54px;
 }
 
-.gradegen pre {
+.gradecalc pre {
     font-size: 13pt;
 }
 
@@ -26,60 +26,60 @@
 
 
 /* NOTICE message */
-.gradegen-notice {
+.gradecalc-notice {
     display: table;
     margin: 2px 0;
     border: 1px solid #777;
     background-color: #eee;
 }
-.gradegen-notice div {
+.gradecalc-notice div {
     display: table-cell;
     padding: 2px 6px;
     color: white;
     background-color: #777;
     height: inherit;
 }
-.gradegen-notice span {
+.gradecalc-notice span {
     display: table-cell;
     padding: 2px 4px;
     color: #777;
 }
 
 /* SUCCESS message */
-.gradegen-success {
+.gradecalc-success {
     display: table;
     margin: 2px 0;
     border: 1px solid #2a0;
     background-color: #efe;
 }
-.gradegen-success div {
+.gradecalc-success div {
     display: table-cell;
     padding: 2px 6px;
     color: white;
     background-color: #2a0;
     height: inherit;
 }
-.gradegen-success span {
+.gradecalc-success span {
     display: table-cell;
     padding: 2px 4px;
     color: #2a0;
 }
 
 /* ERROR message */
-.gradegen-error {
+.gradecalc-error {
     display: table;
     margin: 2px 0;
     border: 1px solid #f33;
     background-color: #fee;
 }
-.gradegen-error div {
+.gradecalc-error div {
     display: table-cell;
     padding: 2px 6px;
     color: white;
     background-color: #f33;
     height: inherit;
 }
-.gradegen-error span {
+.gradecalc-error span {
     display: table-cell;
     padding: 2px 4px;
     color: #f33;

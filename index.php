@@ -1,7 +1,7 @@
 <?php
 
 /**
- * moziloCMS Plugin: GradeGen
+ * moziloCMS Plugin: GradeCalc
  *
  * A generator for various multiple exercises of different subjects.
  *
@@ -12,8 +12,8 @@
  * @author   DEVMOUNT <mail@devmount.de>
  * @license  GPL v3+
  * @version  GIT: v0.1.2014-08-25
- * @link     https://github.com/devmount/GradeGen
- * @link     http://devmount.de/Develop/moziloCMS/Plugins/GradeGen.html
+ * @link     https://github.com/devmount/GradeCalc
+ * @link     http://devmount.de/Develop/moziloCMS/Plugins/GradeCalc.html
  * @see      So do not fear, for I am with you; do not be dismayed, for I am your
  *           God. I will strengthen you and help you; I will uphold you with my
  *           righteous right hand.
@@ -30,15 +30,15 @@ if (!defined('IS_CMS')) {
 }
 
 /**
- * GradeGen Class
+ * GradeCalc Class
  *
  * @category PHP
  * @package  PHP_MoziloPlugins
  * @author   DEVMOUNT <mail@devmount.de>
  * @license  GPL v3+
- * @link     https://github.com/devmount/GradeGen
+ * @link     https://github.com/devmount/GradeCalc
  */
-class GradeGen extends Plugin
+class GradeCalc extends Plugin
 {
     // language
     private $_admin_lang;
@@ -46,14 +46,14 @@ class GradeGen extends Plugin
 
     // plugin information
     const PLUGIN_AUTHOR  = 'DEVMOUNT';
-    const PLUGIN_TITLE   = 'GradeGen';
+    const PLUGIN_TITLE   = 'GradeCalc';
     const PLUGIN_VERSION = 'v0.1.2014-08-25';
     const MOZILO_VERSION = '2.0';
     const PLUGIN_DOCU
-        = 'http://devmount.de/Develop/moziloCMS/Plugins/GradeGen.html';
+        = 'http://devmount.de/Develop/moziloCMS/Plugins/GradeCalc.html';
 
     private $_plugin_tags = array(
-        'tag1' => '{GradeGen}',
+        'tag1' => '{GradeCalc}',
     );
 
     const LOGO_URL = 'http://media.devmount.de/logo_pluginconf.png';
@@ -144,7 +144,7 @@ class GradeGen extends Plugin
         // initialize return content, begin plugin content
         $content = '<!-- BEGIN ' . self::PLUGIN_TITLE . ' plugin content --> ';
 
-        $content .= '<div class="gradegen">';
+        $content .= '<div class="gradecalc">';
 
         // build form
         $reached_selected = (getRequestValue('mode') == 'reached') ? 'selected' : '';
@@ -152,7 +152,7 @@ class GradeGen extends Plugin
         $content .= '
             <h2>Konfiguration</h2>
             <div class="section"><div>
-                <form name="gradegen-form" action="" method="post">
+                <form name="gradecalc-form" action="" method="post">
                     <h3>Punkte</h3>
                     <input type="number" name="total" value="'
                         . getRequestValue('total')
@@ -181,13 +181,13 @@ class GradeGen extends Plugin
                         . getRequestValue('grade5')
                     . '" required /> % Note 5<br />
                     sonst Note 6<br />
-                    <input type="submit" name="gradegen" value="Start" />
+                    <input type="submit" name="gradecalc" value="Start" />
                 </form>
             </div></div>
         ';
 
         // handle input and build exercises
-        if (getRequestValue('gradegen') != '') {
+        if (getRequestValue('gradecalc') != '') {
             // get configuration data
             $points = array(
                 'total' => getRequestValue('total'),
@@ -351,7 +351,7 @@ class GradeGen extends Plugin
 
         // build Template
         // $template .= '
-        //     <div class="gradegen-admin-header">
+        //     <div class="gradecalc-admin-header">
         //     <span>'
         //         . $this->_admin_lang->getLanguageValue(
         //             'admin_header',
@@ -363,21 +363,21 @@ class GradeGen extends Plugin
         //     </a>
         //     </div>
         // </li>
-        // <li class="mo-in-ul-li ui-widget-content gradegen-admin-li">
-        //     <div class="gradegen-admin-subheader">'
+        // <li class="mo-in-ul-li ui-widget-content gradecalc-admin-li">
+        //     <div class="gradecalc-admin-subheader">'
         //     . $this->_admin_lang->getLanguageValue('admin_test')
         //     . '</div>
-        //     <div class="gradegen-single-conf">
+        //     <div class="gradecalc-single-conf">
         //         {test1_text}
         //         {test1_description}
-        //         <span class="gradegen-admin-default">
+        //         <span class="gradecalc-admin-default">
         //             [' . /*$this->_confdefault['test1'][0] .*/']
         //         </span>
         //     </div>
-        //     <div class="gradegen-single-conf">
+        //     <div class="gradecalc-single-conf">
         //         {test2_text}
         //         {test2_description}
-        //         <span class="gradegen-admin-default">
+        //         <span class="gradecalc-admin-default">
         //             [' . /*$this->_confdefault['test2'][0] .*/']
         //         </span>
         // ';
