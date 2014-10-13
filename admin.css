@@ -26,7 +26,8 @@
     padding-left: 6px;
 }
 .gradecalc-single-conf {
-    margin-bottom:5px;
+    margin-bottom: 5px;
+    vertical-align: top;
 }
 .gradecalc-col-third {
     width: 32%;

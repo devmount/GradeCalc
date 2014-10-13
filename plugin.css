@@ -34,23 +34,40 @@
 .section .result-percent {
     font-size: 18px;
     width: 200px;
-    height: 20px;
-    border: 1px solid #ccc;
+    height: 30px;
+    line-height: 30px;
+    margin-bottom: 10px;
+    border: 1px solid;
+    border-color: #ccc;
     background: #eee;
     color: #333;
-    line-height: 20px;
-    margin-bottom: 10px;
 }
 .section .result-grade {
     font-size: 50px;
     font-weight: 700;
-    border: 1px solid #aaa;
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    text-align: center;
+    border: 1px solid;
+    border-color: #aaa;
     background: #ccc;
     color: #333;
-    width: 50px;
-    height: 50px;
-    line-height: 50px;
-    text-align: center;
+}
+.section .result-grade.good {
+    border-color: #2a0;
+    background: #efe;
+    color: #2a0;
+}
+.section .result-grade.medium {
+    border-color: #06a;
+    background: #eef6ff;
+    color: #06a;
+}
+.section .result-grade.bad {
+    border-color: #f33;
+    background: #fee;
+    color: #f33;
 }
 
 /* NOTICE message */
