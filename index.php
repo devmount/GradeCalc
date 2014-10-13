@@ -165,21 +165,21 @@ class GradeCalc extends Plugin
                         <option value="error" ' . $error_selected . '>Fehlerpunkte</option>
                     </select>
                     <h3>Maßstab</h3>
-                    ab <input type="number" name="grade1" value="'
+                    <label>Note 1 ab</label> <input type="number" name="grade1" value="'
                         . getRequestValue('grade1')
-                    . '" required /> % Note 1<br />
-                    ab <input type="number" name="grade2" value="'
+                    . '" required /> %<br />
+                    <label>Note 2 ab</label> <input type="number" name="grade2" value="'
                         . getRequestValue('grade2')
-                    . '" required /> % Note 2<br />
-                    ab <input type="number" name="grade3" value="'
+                    . '" required /> %<br />
+                    <label>Note 3 ab</label> <input type="number" name="grade3" value="'
                         . getRequestValue('grade3')
-                    . '" required /> % Note 3<br />
-                    ab <input type="number" name="grade4" value="'
+                    . '" required /> %<br />
+                    <label>Note 4 ab</label> <input type="number" name="grade4" value="'
                         . getRequestValue('grade4')
-                    . '" required /> % Note 4<br />
-                    ab <input type="number" name="grade5" value="'
+                    . '" required /> %<br />
+                    <label>Note 5 ab</label> <input type="number" name="grade5" value="'
                         . getRequestValue('grade5')
-                    . '" required /> % Note 5<br />
+                    . '" required /> %<br />
                     sonst Note 6<br />
                     <input type="submit" name="gradecalc" value="Start" />
                 </form>
