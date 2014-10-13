@@ -71,43 +71,13 @@ class GradeCalc extends Plugin
      *      select   => default, type, descriptions, multiselect
      */
     private $_confdefault = array(
-        // 'text' => array(
-        //     'string',
-        //     'text',
-        //     '100',
-        //     '5',
-        //     "/^[0-9]{1,3}$/",
-        // ),
-        // 'textarea' => array(
-        //     'string',
-        //     'textarea',
-        //     '10',
-        //     '10',
-        //     "/^[a-zA-Z0-9]{1,10}$/",
-        // ),
-        // 'password' => array(
-        //     'string',
-        //     'password',
-        //     '100',
-        //     '5',
-        //     "/^[a-zA-Z0-9]{8,20}$/",
-        //     true,
-        // ),
-        // 'check' => array(
-        //     true,
-        //     'check',
-        // ),
-        // 'radio' => array(
-        //     'red',
-        //     'radio',
-        //     array('red', 'green', 'blue'),
-        // ),
-        // 'select' => array(
-        //     'bike',
-        //     'select',
-        //     array('car','bike','plane'),
-        //     false,
-        // ),
+        'preset' => array(
+            "95,90,85,80,75\r\n90,80,70,60,50",
+            'textarea',
+            '60',
+            '10',
+            "",
+        ),
     );
 
     /**
@@ -130,15 +100,29 @@ class GradeCalc extends Plugin
             . '.txt'
         );
 
-        // get params
-        $mode = $value; // TODO: build modes
-
         // get conf and set default
         $conf = array();
         foreach ($this->_confdefault as $elem => $default) {
             $conf[$elem] = ($this->settings->get($elem) == '')
                 ? $default[0]
                 : $this->settings->get($elem);
+        }
+
+        // prepare preset array
+        $preset = array();
+        foreach (explode("<br />", $conf['preset']) as $line) {
+            $presetRaw = explode('|', $line);
+            $presetData = trim($presetRaw[0]);
+            $presetLabel = trim($presetRaw[1]);
+            $presetElements = array();
+            foreach (explode(',', $presetData) as $element) {
+                $presetElements[] = trim($element);
+            }
+            $key = implode(',', $presetElements);
+            $value = implode(', ', $presetElements) . ' — ' . $presetLabel;
+            if ($key) {
+                $preset[$key] = $value;
+            }
         }
 
         // include jquery and PluginDraft javascript
@@ -173,14 +157,11 @@ class GradeCalc extends Plugin
                     </select>
                     <h3>Maßstab</h3>
                     <select id="preset">
-                        <option value="">Vordefiniert...</option>
-                        <option value="95,90,85,80,75">
-                            95, 90, 85, 80, 75
-                        </option>
-                        <option value="90,80,70,60,50">
-                            90, 80, 70, 60, 50
-                        </option>
-                    </select><br />
+                        <option value="">Vordefiniert...</option>';
+        foreach ($preset as $value => $option) {
+            $content .= '<option value="' . $value . '">' . $option . '</option>';
+        }
+        $content .= '</select><br />
                     <label>Note 1 ab</label>
                     <input type="number" class="grade" id="g0" name="grade1" value="'
                         . getRequestValue('grade1')
@@ -238,31 +219,46 @@ class GradeCalc extends Plugin
                     $percent = 0;
                     break;
             }
+
+            // calculate grade
+            $fullPercent = round($percent);
+            if ($fullPercent < $grades['5']) {
+                $grade = "6";
+            } else
+            if ($fullPercent >= $grades['5'] and $fullPercent < $grades['4']) {
+                $grade = "5";
+            } else
+            if ($fullPercent >= $grades['4'] and $fullPercent < $grades['3']) {
+                $grade = "4";
+            } else
+            if ($fullPercent >= $grades['3'] and $fullPercent < $grades['2']) {
+                $grade = "3";
+            } else
+            if ($fullPercent >= $grades['2'] and $fullPercent < $grades['1']) {
+                $grade = "2";
+            } else
+            if ($fullPercent >= $grades['1']) {
+                $grade = "1";
+            }
+
+            // calculate style
+            $gradeClass = 'medium';
+            if ($grade > 5) {
+                $gradeClass = 'bad';
+            } else
+            if ($grade < 2) {
+                $gradeClass = 'good';
+            }
+
+            // output: result percentage
             $content .= 'Erbrachte Leistung:<br />';
             $content .= '<div class="result-percent"
                 style="background: linear-gradient(to right, #ccc ' . $percent . '%, #eee ' . $percent . '%);"
                 >&nbsp;' . $percent . ' %</div>';
 
-            if ($percent < $grades['5']) {
-                $grade = "6";
-            }
-            if ($percent >= $grades['5'] and $percent < $grades['4']) {
-                $grade = "5";
-            }
-            if ($percent >= $grades['4'] and $percent < $grades['3']) {
-                $grade = "4";
-            }
-            if ($percent >= $grades['3'] and $percent < $grades['2']) {
-                $grade = "3";
-            }
-            if ($percent >= $grades['2'] and $percent < $grades['1']) {
-                $grade = "2";
-            }
-            if ($percent >= $grades['1']) {
-                $grade = "1";
-            }
+            // output: grade
             $content .= 'Note:<br />';
-            $content .= '<div class="result-grade">' . $grade . '</div>';
+            $content .= '<div class="result-grade ' . $gradeClass . '">' . $grade . '</div>';
 
             $content .= '</div></div>';
             $content .= '<br />Alle Angaben und Ergebnisse ohne Gewähr.';
@@ -379,39 +375,32 @@ class GradeCalc extends Plugin
         $template = '<style>' . $admin_css . '</style>';
 
         // build Template
-        // $template .= '
-        //     <div class="gradecalc-admin-header">
-        //     <span>'
-        //         . $this->_admin_lang->getLanguageValue(
-        //             'admin_header',
-        //             self::PLUGIN_TITLE
-        //         )
-        //     . '</span>
-        //     <a href="' . self::PLUGIN_DOCU . '" target="_blank">
-        //     <img style="float:right;" src="' . self::LOGO_URL . '" />
-        //     </a>
-        //     </div>
-        // </li>
-        // <li class="mo-in-ul-li ui-widget-content gradecalc-admin-li">
-        //     <div class="gradecalc-admin-subheader">'
-        //     . $this->_admin_lang->getLanguageValue('admin_test')
-        //     . '</div>
-        //     <div class="gradecalc-single-conf">
-        //         {test1_text}
-        //         {test1_description}
-        //         <span class="gradecalc-admin-default">
-        //             [' . /*$this->_confdefault['test1'][0] .*/']
-        //         </span>
-        //     </div>
-        //     <div class="gradecalc-single-conf">
-        //         {test2_text}
-        //         {test2_description}
-        //         <span class="gradecalc-admin-default">
-        //             [' . /*$this->_confdefault['test2'][0] .*/']
-        //         </span>
-        // ';
+        $template .= '
+            <div class="gradecalc-admin-header">
+            <span>'
+                . $this->_admin_lang->getLanguageValue(
+                    'admin_header',
+                    self::PLUGIN_TITLE
+                )
+            . '</span>
+            <a href="' . self::PLUGIN_DOCU . '" target="_blank">
+            <img style="float:right;" src="' . self::LOGO_URL . '" />
+            </a>
+            </div>
+        </li>
+        <li class="mo-in-ul-li ui-widget-content gradecalc-admin-li">
+            <div class="gradecalc-admin-subheader">'
+            . $this->_admin_lang->getLanguageValue('admin_test')
+            . '</div>
+            <div class="gradecalc-single-conf">
+                {preset_textarea}
+                {preset_description}
+                <span class="gradecalc-admin-default">
+                    [' . $this->_confdefault['preset'][0] .']
+                </span>
+        ';
 
-        // $config['--template~~'] = $template;
+        $config['--template~~'] = $template;
 
         return $config;
     }
