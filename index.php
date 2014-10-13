@@ -141,6 +141,9 @@ class GradeCalc extends Plugin
                 : $this->settings->get($elem);
         }
 
+        // include jquery and PluginDraft javascript
+        $syntax->insert_jquery_in_head('jquery');
+
         // initialize return content, begin plugin content
         $content = '<!-- BEGIN ' . self::PLUGIN_TITLE . ' plugin content --> ';
 
@@ -161,23 +164,41 @@ class GradeCalc extends Plugin
                         . getRequestValue('points')
                     . '" required />
                     <select name="mode">
-                        <option value="reached" ' . $reached_selected . '>erreichte Punkte</option>
-                        <option value="error" ' . $error_selected . '>Fehlerpunkte</option>
+                        <option value="reached" ' . $reached_selected . '>
+                            erreichte Punkte
+                        </option>
+                        <option value="error" ' . $error_selected . '>
+                            Fehlerpunkte
+                        </option>
                     </select>
                     <h3>Maßstab</h3>
-                    <label>Note 1 ab</label> <input type="number" name="grade1" value="'
+                    <select id="preset">
+                        <option value="">Vordefiniert...</option>
+                        <option value="95,90,85,80,75">
+                            95, 90, 85, 80, 75
+                        </option>
+                        <option value="90,80,70,60,50">
+                            90, 80, 70, 60, 50
+                        </option>
+                    </select><br />
+                    <label>Note 1 ab</label>
+                    <input type="number" class="grade" id="g0" name="grade1" value="'
                         . getRequestValue('grade1')
                     . '" required /> %<br />
-                    <label>Note 2 ab</label> <input type="number" name="grade2" value="'
+                    <label>Note 2 ab</label>
+                    <input type="number" class="grade" id="g1" name="grade2" value="'
                         . getRequestValue('grade2')
                     . '" required /> %<br />
-                    <label>Note 3 ab</label> <input type="number" name="grade3" value="'
+                    <label>Note 3 ab</label>
+                    <input type="number" class="grade" id="g2" name="grade3" value="'
                         . getRequestValue('grade3')
                     . '" required /> %<br />
-                    <label>Note 4 ab</label> <input type="number" name="grade4" value="'
+                    <label>Note 4 ab</label>
+                    <input type="number" class="grade" id="g3" name="grade4" value="'
                         . getRequestValue('grade4')
                     . '" required /> %<br />
-                    <label>Note 5 ab</label> <input type="number" name="grade5" value="'
+                    <label>Note 5 ab</label>
+                    <input type="number" class="grade" id="g4" name="grade5" value="'
                         . getRequestValue('grade5')
                     . '" required /> %<br />
                     sonst Note 6<br />
@@ -244,6 +265,10 @@ class GradeCalc extends Plugin
         }
 
         $content .= '</div>';
+
+        $content .= '<script type="text/javascript" src="'
+            . $this->PLUGIN_SELF_URL
+            . 'js/preset.js"></script>';
 
         // end plugin content
         $content .= '<!-- END ' . self::PLUGIN_TITLE . ' plugin content --> ';
