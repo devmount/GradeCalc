@@ -155,7 +155,7 @@ class GradeCalc extends Plugin
         $content .= '
             <h2>Konfiguration</h2>
             <div class="section"><div>
-                <form name="gradecalc-form" action="" method="post">
+                <form name="gradecalc-form" action="#result" method="post">
                     <h3>Punkte</h3>
                     <input type="number" name="total" value="'
                         . getRequestValue('total')
@@ -224,41 +224,45 @@ class GradeCalc extends Plugin
             );
             // multiply
             $content .= '<br />';
-            $content .= '<h2>Ausgabe</h2>';
+            $content .= '<h2 id="result">Ausgabe</h2>';
             $content .= '<div class="section"><div>';
 
             switch ($points['mode']) {
                 case 'reached':
-                    $percentage = round(($points['points']/$points['total'])*100, 2);
+                    $percent = round(($points['points']/$points['total'])*100, 2);
                     break;
                  case 'error':
-                    $percentage = round((1-($points['points']/$points['total']))*100, 2);
+                    $percent = round((1-($points['points']/$points['total']))*100, 2);
                     break;
                 default:
-                    $percentage = 0;
+                    $percent = 0;
                     break;
             }
-            $content .= $percentage . ' % erreicht<br />';
+            $content .= 'Erbrachte Leistung:<br />';
+            $content .= '<div class="result-percent"
+                style="background: linear-gradient(to right, #ccc ' . $percent . '%, #eee ' . $percent . '%);"
+                >&nbsp;' . $percent . ' %</div>';
 
-            if ($percentage < $grades['5']) {
+            if ($percent < $grades['5']) {
                 $grade = "6";
             }
-            if ($percentage >= $grades['5'] and $percentage < $grades['4']) {
+            if ($percent >= $grades['5'] and $percent < $grades['4']) {
                 $grade = "5";
             }
-            if ($percentage >= $grades['4'] and $percentage < $grades['3']) {
+            if ($percent >= $grades['4'] and $percent < $grades['3']) {
                 $grade = "4";
             }
-            if ($percentage >= $grades['3'] and $percentage < $grades['2']) {
+            if ($percent >= $grades['3'] and $percent < $grades['2']) {
                 $grade = "3";
             }
-            if ($percentage >= $grades['2'] and $percentage < $grades['1']) {
+            if ($percent >= $grades['2'] and $percent < $grades['1']) {
                 $grade = "2";
             }
-            if ($percentage >= $grades['1']) {
+            if ($percent >= $grades['1']) {
                 $grade = "1";
             }
-            $content .= 'Note ' . $grade;
+            $content .= 'Note:<br />';
+            $content .= '<div class="result-grade">' . $grade . '</div>';
 
             $content .= '</div></div>';
             $content .= '<br />Alle Angaben und Ergebnisse ohne Gewähr.';

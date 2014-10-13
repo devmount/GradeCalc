@@ -17,6 +17,9 @@
 .gradecalc select {
     height: 22px;
 }
+.gradecalc #preset {
+    margin: 5px 0;
+}
 .gradecalc input[type='submit'] {
     margin-top: 10px;
     padding: 2px 0;
@@ -28,7 +31,27 @@
 }
 
 /* Result */
-
+.section .result-percent {
+    font-size: 18px;
+    width: 200px;
+    height: 20px;
+    border: 1px solid #ccc;
+    background: #eee;
+    color: #333;
+    line-height: 20px;
+    margin-bottom: 10px;
+}
+.section .result-grade {
+    font-size: 50px;
+    font-weight: 700;
+    border: 1px solid #aaa;
+    background: #ccc;
+    color: #333;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+}
 
 /* NOTICE message */
 .gradecalc-notice {
