@@ -73,15 +73,16 @@
 .section .scale {
     border-collapse: collapse;
 }
-.section .scale th {
+.section .scale td:first-child {
     background: #ccc;
     font-weight: normal;
     font-size: 16px;
 }
-.section .scale th,
 .section .scale td {
     border: 1px solid #ccc;
     padding: 0 5px;
+    text-align: center;
+    vertical-align: middle;
 }
 .section .scale td.good {
     background: #efe;
@@ -94,6 +95,15 @@
 .section .scale td.bad {
     background: #fee;
     color: #f33;
+}
+.section .scale td:first-child.good {
+    border-right-color: #efe;
+}
+.section .scale td:first-child.medium {
+    border-right-color: #eef6ff;
+}
+.section .scale td:first-child.bad {
+    border-right-color: #fee;
 }
 
 /* NOTICE message */

@@ -141,10 +141,10 @@ class GradeCalc extends Plugin
             <div class="section"><div>
                 <form name="gradecalc-form" action="#result" method="post">
                     <h3>Punkte</h3>
-                    <input type="number" name="total" value="'
+                    <input type="number" step="0.5" name="total" value="'
                         . getRequestValue('total')
                     . '" required /> Gesamtpunkte<br />
-                    <input type="number" name="points" value="'
+                    <input type="number" step="0.5" name="points" value="'
                         . getRequestValue('points')
                     . '" required />
                     <select name="mode">
@@ -263,12 +263,11 @@ class GradeCalc extends Plugin
 
             // output: scale
             $content .= 'Maßstab:<br />';
-            $content .= '<table class="scale"><tr>';
+            $content .= '<table class="scale">';
+            $content .= '<tr><th>Note</th><th>Punkte</th></tr>';
             for ($i=1; $i <= 6; $i++) {
-                $content .= '<th class="' . ($i == $grade ? $gradeClass : '') . '">' . $i . '</th>';
-            }
-            $content .= '</tr><tr>';
-            for ($i=1; $i <= 6; $i++) {
+                $content .= '<tr>';
+                $content .= '<td class="' . ($i == $grade ? $gradeClass : '') . '">' . $i . '</td>';
                 // calculate limits
                 if ($i <= 1) {
                     $upper = $points['total'];
@@ -280,9 +279,11 @@ class GradeCalc extends Plugin
                 } else {
                     $lower = round($points['total']*$grades[$i]/100);
                 }
-                $content .= '<td class="' . ($i == $grade ? $gradeClass : '') . '">' . $upper . ' - ' . $lower . '</td>';
+                $range = ($upper == $lower) ? $upper : $upper . ' - ' . $lower;
+                $content .= '<td class="' . ($i == $grade ? $gradeClass : '') . '">' . $range . '</td>';
+                $content .= '</tr>';
             }
-            $content .= '</tr></table>';
+            $content .= '</table>';
 
             $content .= '</div></div>';
             $content .= '<br />Alle Angaben und Ergebnisse ohne Gewähr.';
