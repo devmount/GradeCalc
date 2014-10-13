@@ -1,0 +1,4 @@
+tag          = Shows configuration formula and generated contents.
+description  = A generator for various multiple exercises of different subjects. <br /><br /><span class='plugindraft-bold'>Use:</span><br /><span class='plugindraft-code'>{PARAM1}</span> Shows configuration formula and generated contents.<br /><br /><span class='plugindraft-bold'>Documentation:</span><br />A detailed documentation can be found on <span class='plugindraft-italic'>www.devmount.de </span> (link above).
+on_devmount  = on devmount.de
+admin_header = {PARAM1} Plugin Configuration
