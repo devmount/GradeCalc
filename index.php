@@ -72,7 +72,7 @@ class GradeCalc extends Plugin
      */
     private $_confdefault = array(
         'preset' => array(
-            "95,90,85,80,75\r\n90,80,70,60,50",
+            "96, 80, 60, 45, 16 | Allgemein",
             'textarea',
             '60',
             '10',
@@ -415,14 +415,15 @@ class GradeCalc extends Plugin
         </li>
         <li class="mo-in-ul-li ui-widget-content gradecalc-admin-li">
             <div class="gradecalc-admin-subheader">'
-            . $this->_admin_lang->getLanguageValue('admin_test')
+            . $this->_admin_lang->getLanguageValue('admin_preset')
             . '</div>
             <div class="gradecalc-single-conf">
                 {preset_textarea}
-                {preset_description}
+                {preset_description}<br /><br />
                 <span class="gradecalc-admin-default">
                     [' . $this->_confdefault['preset'][0] .']
                 </span>
+                <br style="clear:both;" />
         ';
 
         $config['--template~~'] = $template;

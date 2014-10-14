@@ -1,4 +1,6 @@
-tag1         = Zeigt das Konfigurations-Formular und die generierten Inhalte des TaskGen Plugins an.
-description  = Das TaskGen Plugin generiert zufällig unterschiedliche Aufgaben, basierend auf vorheriger Konfiguration. <br /><br /><span class='plugindraft-bold'>Nutzung:</span><br /><span class='plugindraft-code'>{PARAM1}</span> Zeigt das Konfigurations-Formular und die generierten Inhalte des TaskGen Plugins an. <br /><br /><span class='plugindraft-bold'>Dokumentation:</span><br />Eine ausführliche Dokumentation ist auf <span class="plugindraft-italic">www.devmount.de</span> zu finden (siehe obenstehender Link).
-on_devmount  = auf devmount.de
-admin_header = {PARAM1} Plugin Konfiguration
+tag1          = Zeigt das Konfigurations-Formular und die generierten Inhalte des TaskGen Plugins an.
+description   = Das TaskGen Plugin generiert zufällig unterschiedliche Aufgaben, basierend auf vorheriger Konfiguration. <br /><br /><span class='plugindraft-bold'>Nutzung:</span><br /><span class='plugindraft-code'>{PARAM1}</span> Zeigt das Konfigurations-Formular und die generierten Inhalte des TaskGen Plugins an. <br /><br /><span class='plugindraft-bold'>Dokumentation:</span><br />Eine ausführliche Dokumentation ist auf <span class="plugindraft-italic">www.devmount.de</span> zu finden (siehe obenstehender Link).
+on_devmount   = auf devmount.de
+admin_header  = {PARAM1} Plugin Konfiguration
+admin_preset  = Voreinstellung
+config_preset = Pro Zeile eine Voreinstellung notieren. Diese besteht aus 5 durch Komma getrennten Zahlen, welche die Prozentsätze der Noten 1 - 5 darstellen (Note 6 gibt es immer ab 0% und muss daher nicht berücksichtigt werden) und einem Label, mit welchem das Preset benannt werden kann. Label und Zahlen sind durch eine Pipe getrennt, z.B.: <span class='plugindraft-code'>96, 80, 60, 45, 16 | Allgemein</span>
