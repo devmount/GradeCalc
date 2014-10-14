@@ -3,7 +3,7 @@ GradeCalc
 
 A Plugin for moziloCMS 2.0
 
-A calculator for grades, based on obtained score or points of failure and given percentages.
+A calculator for computing a grade based on the optained score and given percentages of the singe grades.
 
 ## Installation
 #### With moziloCMS installer
@@ -17,7 +17,7 @@ Installing a plugin manually requires FTP Access.
 
 ## Syntax
 ```{GradeCalc}```
-Shows configuration formula and generated contents.
+Shows configuration form and computed results.
 
 ## License
 This Plugin is distributed under *GNU General Public License, Version 3* (see LICENSE) or, at your choice, any further version.
