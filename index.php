@@ -11,7 +11,7 @@
  * @package  PHP_MoziloPlugins
  * @author   DEVMOUNT <mail@devmount.de>
  * @license  GPL v3+
- * @version  GIT: v0.1.2014-10-14
+ * @version  GIT: v0.2.2014-10-14
  * @link     https://github.com/devmount/GradeCalc
  * @link     http://devmount.de/Develop/moziloCMS/Plugins/GradeCalc.html
  * @see      And the peace of God, which passes all understanding, shall keep your
@@ -46,7 +46,7 @@ class GradeCalc extends Plugin
     // plugin information
     const PLUGIN_AUTHOR  = 'DEVMOUNT';
     const PLUGIN_TITLE   = 'GradeCalc';
-    const PLUGIN_VERSION = 'v0.1.2014-10-14';
+    const PLUGIN_VERSION = 'v0.2.2014-10-14';
     const MOZILO_VERSION = '2.0';
     const PLUGIN_DOCU
         = 'http://devmount.de/Develop/moziloCMS/Plugins/GradeCalc.html';
