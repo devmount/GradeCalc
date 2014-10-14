@@ -16,6 +16,7 @@
 }
 .gradecalc select {
     height: 22px;
+    width: auto;
 }
 .gradecalc #preset {
     margin: 5px 0;
