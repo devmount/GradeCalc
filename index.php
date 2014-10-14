@@ -11,12 +11,11 @@
  * @package  PHP_MoziloPlugins
  * @author   DEVMOUNT <mail@devmount.de>
  * @license  GPL v3+
- * @version  GIT: v0.1.2014-08-25
+ * @version  GIT: v0.1.2014-10-14
  * @link     https://github.com/devmount/GradeCalc
  * @link     http://devmount.de/Develop/moziloCMS/Plugins/GradeCalc.html
- * @see      So do not fear, for I am with you; do not be dismayed, for I am your
- *           God. I will strengthen you and help you; I will uphold you with my
- *           righteous right hand.
+ * @see      And the peace of God, which passes all understanding, shall keep your
+ *           hearts and minds through Christ Jesus.
  *           – The Bible
  *
  * Plugin created by DEVMOUNT
@@ -47,7 +46,7 @@ class GradeCalc extends Plugin
     // plugin information
     const PLUGIN_AUTHOR  = 'DEVMOUNT';
     const PLUGIN_TITLE   = 'GradeCalc';
-    const PLUGIN_VERSION = 'v0.1.2014-08-25';
+    const PLUGIN_VERSION = 'v0.1.2014-10-14';
     const MOZILO_VERSION = '2.0';
     const PLUGIN_DOCU
         = 'http://devmount.de/Develop/moziloCMS/Plugins/GradeCalc.html';
