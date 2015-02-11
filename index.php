@@ -253,7 +253,7 @@ class GradeCalc extends Plugin
             // output: result percentage
             $content .= 'Erbrachte Leistung:<br />';
             $content .= '<div class="result-percent"
-                style="background: linear-gradient(to right, #ccc ' . $percent . '%, #eee ' . $percent . '%);"
+                style="background: linear-gradient(to right, #555 ' . $percent . '%, #eee ' . $percent . '%);"
                 >&nbsp;' . $percent . ' %</div>';
 
             // output: grade
