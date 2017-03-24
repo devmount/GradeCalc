@@ -16,7 +16,9 @@ Installing a plugin manually requires FTP Access.
 - Go to the backend tab *Plugins* and activate the now listed new GradeCalc plugin
 
 ## Syntax
-```{GradeCalc}```
+```
+{GradeCalc}
+```
 Shows configuration form and computed results.
 
 ## License
@@ -24,4 +26,4 @@ This Plugin is distributed under *GNU General Public License, Version 3* (see LI
 
 ## Documentation
 A detailed documentation and demo can be found on DEVMOUNT's website:
-http://devmount.de/Develop/moziloCMS/Plugins/GradeCalc.html
+http://t.devmount.de/Develop/moziloCMS/Plugins/GradeCalc.html
