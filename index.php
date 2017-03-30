@@ -12,8 +12,7 @@
  * @author   DEVMOUNT <mail@devmount.de>
  * @license  GPL v3+
  * @version  GIT: v0.2.2014-10-14
- * @link     https://github.com/devmount-mozilo/GradeCalc
- * @link     http://devmount.de/Develop/moziloCMS/Plugins/GradeCalc.html
+ * @link     https://github.com/devmount-mozilo/GradeCalc/wiki/Dokumentation
  * @see      And the peace of God, which passes all understanding, shall keep your
  *           hearts and minds through Christ Jesus.
  *           – The Bible
@@ -49,7 +48,7 @@ class GradeCalc extends Plugin
     const PLUGIN_VERSION = 'v0.2.2014-10-14';
     const MOZILO_VERSION = '2.0';
     const PLUGIN_DOCU
-        = 'http://devmount.de/Develop/moziloCMS/Plugins/GradeCalc.html';
+        = 'https://github.com/devmount-mozilo/GradeCalc/wiki/Dokumentation';
 
     private $_plugin_tags = array(
         'tag1' => '{GradeCalc}',
